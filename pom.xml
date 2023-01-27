@@ -10,12 +10,15 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>renren-fast</module>
 		<module>gulimall-product</module>
 		<module>gulimall-member</module>
 		<module>gulimall-coupon</module>
 		<module>gulimall-order</module>
 		<module>gulimall-ware</module>
-	</modules>
+		<module>renren-generator</module>
+        <module>gulimall-common</module>
+    </modules>
 
 
 

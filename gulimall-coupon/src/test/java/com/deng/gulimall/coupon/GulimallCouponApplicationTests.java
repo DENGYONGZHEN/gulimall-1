@@ -1,10 +1,14 @@
 package com.deng.gulimall.coupon;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@RunWith(SpringRunner.class)
 @SpringBootTest
-class GulimallCouponApplicationTests {
+public class GulimallCouponApplicationTests {
 
     @Test
     void contextLoads() {
