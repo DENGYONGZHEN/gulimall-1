@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 
+import com.deng.gulimall.member.feign.CouponFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,21 @@ import com.deng.common.utils.R;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+    @Autowired
+    CouponFeignService couponFeignService;
+
+    /**
+     * 测试使用feign
+     * @return
+     */
+    @RequestMapping("/coupons")
+    public R coupons(){
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setNickname("zhangsan");
+        R r = couponFeignService.CouponMember();
+        Object coupon = r.get("coupon");
+        return R.ok().put("member",memberEntity).put("coupon",coupon);
+    }
 
     /**
      * 列表
