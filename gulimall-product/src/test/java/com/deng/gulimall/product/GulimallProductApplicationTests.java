@@ -25,14 +25,14 @@ public class GulimallProductApplicationTests {
 
 	@Autowired
 	BrandService brandService;
-
 	@Autowired
 	CategoryService categoryService;
-//	@Test
-//	public void testFindPath(){
-//		Long[] catelogPath = categoryService.findCatelogPath(225L);
-//		log.info("完整路径：{}", Arrays.asList(catelogPath));
-//	}
+	@Test
+	public void TestGetPath(){
+		Long[] catelogPath = categoryService.findCatelogPath(225L);
+		log.info("完整路径：{}",Arrays.asList(catelogPath));
+	}
+
 
 	@Test
 	public void contextLoads() {

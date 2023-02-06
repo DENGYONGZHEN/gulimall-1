@@ -10,9 +10,9 @@ package com.deng.common.utils;
 
 
 
-import com.deng.common.validator.group.AliyunGroup;
-import com.deng.common.validator.group.QcloudGroup;
-import com.deng.common.validator.group.QiniuGroup;
+import com.deng.common.valid.group.AliyunGroup;
+import com.deng.common.valid.group.QcloudGroup;
+import com.deng.common.valid.group.QiniuGroup;
 
 import java.util.Optional;
 import java.util.stream.Stream;

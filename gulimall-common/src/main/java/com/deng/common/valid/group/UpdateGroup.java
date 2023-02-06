@@ -6,12 +6,14 @@
  * 版权所有，侵权必究！
  */
 
-package com.deng.common.validator.group;
+package com.deng.common.valid.group;
 
 /**
- * 新增数据 Group
+ * 更新数据 Group
  *
- * @author Mark sunlightcs@gmail.com
+ * @author
  */
-public interface AddGroup {
+
+public interface UpdateGroup {
+
 }

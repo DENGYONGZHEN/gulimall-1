@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package com.deng.common.validator;
+package com.deng.common.valid;
 
 import com.deng.common.utils.RRException;
 import org.apache.commons.lang.StringUtils;

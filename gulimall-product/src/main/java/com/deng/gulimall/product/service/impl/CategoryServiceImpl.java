@@ -1,8 +1,11 @@
 package com.deng.gulimall.product.service.impl;
 
+import com.deng.gulimall.product.service.CategoryBrandRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,13 +19,17 @@ import com.deng.common.utils.Query;
 import com.deng.gulimall.product.dao.CategoryDao;
 import com.deng.gulimall.product.entity.CategoryEntity;
 import com.deng.gulimall.product.service.CategoryService;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
-//    @Autowired
-//    CategoryDao categoryDao;
+    @Autowired
+    CategoryBrandRelationService categoryBrandRelationService;
+
+
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -67,6 +74,41 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
         //使用逻辑删除
         baseMapper.deleteBatchIds(catIds);
+    }
+
+    /**
+     *  catelogId找到完整路径  父路径/父路径/子路径
+     * @param catelogId 属性分组表中的对应三级分类pms_category表中的id字段
+     * @return
+     */
+    @Override
+    public  Long[]  findCatelogPath(Long catelogId) {
+        List<Long> paths = new ArrayList<>();
+        List<Long> parentPath = findParents(catelogId, paths);
+        Collections.reverse(parentPath);
+        return (Long[]) parentPath.toArray(new Long[parentPath.size()]);
+    }
+
+    /**
+     * 级联更新所有关联的表
+     * @param category
+     */
+    @Transactional
+    @Override
+    public void updateCascade(CategoryEntity category) {
+        this.updateById(category);
+        if(!StringUtils.isEmpty(category.getName())){
+            categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
+        }
+    }
+
+    private  List<Long> findParents(Long id,List<Long> paths){
+        paths.add(id);
+        CategoryEntity entity = this.getById(id);
+        if(entity.getParentCid() !=0){
+            this.findParents(entity.getParentCid(),paths);
+        }
+        return paths;
     }
 
     /**

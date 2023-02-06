@@ -6,12 +6,12 @@
  * 版权所有，侵权必究！
  */
 
-package com.deng.common.validator.group;
+package com.deng.common.valid.group;
 
 /**
- * 阿里云
+ * 新增数据 Group
  *
  * @author Mark sunlightcs@gmail.com
  */
-public interface AliyunGroup {
+public interface AddGroup {
 }
